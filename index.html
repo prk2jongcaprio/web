@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+  <title>CORTIS</title> 
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background: black;
+  color: white;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+/* Mengubah background utama menjadi gelap polos agar foto di kanan terlihat kontras */
+.main {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0d0f14; /* Warna gelap elegan seperti web modern */
+  font-family: Sans-Serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- PERBAIKAN NAVBAR & MENU --- */
+.navbar {
+  width: 100%;
+  padding: 10px 8%;
+  display:flex;
+  height: auto;
+  justify-content: space-between;
+  background: black;
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+  font-family: cursive;
+}
+
+.logo {
+  color: white;
+  font-size: 40px;
+  font-family: cursive;
+  float: left;
+  padding-top: .6%;
+  cursor: pointer;
+}
+
+.menu {
+  width: 600px;
+  float: left;
+  height: 75px;
+}
+
+ul {
+  float: left;
+  display: flex;
+  padding-top: 30px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+}
+
+ul li {
+  list-style: none;
+  margin-left: 60px;
+  font-size: 16px;
+}
+
+ul li a {
+  text-decoration: none;
+  color: white;
+  font-family: Arial, Helvetica, Sans-Serif;
+  font-weight: bold;
+  transition: .3s ease;
+}
+
+ul li:hover {
+  color: green;
+}
+
+.search-box {
+  float: right;
+  width: 240px;
+  background: white;
+  height: 30px;
+  padding: 8px;
+  border-radius: 15px;
+  margin-top: 1%;
+  margin-right: 2%;
+}
+
+.search-box .search-txt {
+  width: 190px;
+  padding: 0;
+}
+
+.search-txt {
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  color: #000;
+  font-size: 16px;
+  line-height: 0px;
+  letter-spacing: .6px;
+}
+
+/* --- LAYOUT UTAMA 2 KOLOM (FLEXBOX) --- */
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 85%;
+  margin: auto; /* Otomatis memposisikan konten di tengah layar */
+  gap: 60px; /* Jarak pisah antara teks kiri dan foto kanan */
+  padding-bottom: 50px;
+}
+
+.hero-video{
+  margin: 30px;
+  width: 95%;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 25px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+/* Membagi porsi ruang kiri dan kanan sama besar */
+.hero-left {
+  flex: 1;
+  color: white;
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Teks Bagian Kiri */
+.hero-left .subtitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #a0a5b5;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.hero-left .main-title {
+  font-size: 50px;
+  font-family: 'Dancing Script', cursive; 
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero-left .description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #cdcfd6;
+  margin-bottom: 30px;
+  max-width: 480px;
+}
+
+/* Tombol Aksi */
+.action-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-primary {
+  color: black;
+  background-color: white;
+  padding: 10px 25px;
+  font-size: 16px;
+  text-decoration: none;
+  border: 1px solid white;
+  font-weight: bold;
+  transition: .3s ease;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: white;
+}
+
+.btn-secondary {
+  color: white;
+  padding: 10px 25px;
+  font-size: 16px;
+  text-decoration: none;
+  border: 1px solid white;
+  transition: .3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Foto Bagian Kanan */
+.hero-image {
+  width: 100%;
+  max-width: 500px; 
+  height: auto;
+  border-radius: 12px; 
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding: 0 20px 16px;
+    scrollbar-width: none;
+  }
+  
+  .carousel-item{
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    height: 800px;
+    max-width: 300%;
+    border-radius: 25px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .gallery-title{
+  width: 100%;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.gallery-title h1{
+  font-size: 50px;
+  color: white;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.gallery-title p{
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 20px;
+}
+.container{
+    padding: 20px 8% 70px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 30px;
+}
+
+.card{
+ background: white;
+ border-radius: 20px;
+ overflow: hidden;
+ box-shadow: 0 5px 15px;
+ transition: 0.3s ease;
+}
+
+.card:hover{
+  transform: translateY(-10px);
+}
+
+.card img{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.card-content{
+    padding: 20px;
+    font-family: cursive;
+}
+.card-content h3{
+    margin-bottom: 12px;
+    color: black;
+}
+.card-content p{
+    color: #333;
+    line-height: 28px;
+    white-space: pre-line;
+}
+
+.footer{
+  padding: 45px;
+  text-align: center;
+  
+}
+  </style>
+</head>
+
+<body>
+<div class="main">
+
+  <div class="navbar">
+    <h2 class="logo">CORTIS</h2>
+    
+    <div class="menu">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Award</a></li>
+        <li><a href="#">Gallery Cortis</a></li>
+      </ul>
+    </div>
+    
+    <div class="search-box">
+      <input class="search-txt" type="text" placeholder="Type to search">
+      <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
+    </div>
+  </div> <div class="hero-container">
+    
+    <div class="hero-left">
+      <h2 class="subtitle">CORTIS</h2>
+      <h1 class="main-title">Color Outside the Line</h1>
+      <p class="description">
+        Selamat Datang di Web COER, disini kalian bisa melihat tentang
+        member cortis dan yang lainnya.
+      </p>
+      
+      <div class="action-buttons">
+        <a href="#" class="btn-primary">WATCH VIDEO</a>
+        <a href="#" class="btn-secondary">LEARN MORE</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <img src="foto5.jpeg" alt="Cortis Members" class="hero-image">
+    </div>
+     </div> 
+     <div class="gallery-title">
+          <h1>Gallery Cortis</h1>
+          <p>Berikut dibawah ini merupakan foto grup member Cortis</p>
+        </div>
+
+       <div class="carousel">
+         <div class="carousel-item" style="background-image:url(foto1.jpg)"></div>
+         <div class="carousel-item" style="background-image:url(foto2.jpg)"></div>
+         <div class="carousel-item" style="background-image:url(foto32.jpg)"></div>
+         <div class="carousel-item" style="background-image:url(foto4.jpg)"></div>
+         <div class="carousel-item" style="background-image:url(foto52.jpg)"></div>
+       </div>
+
+       <h1 class="gallery-title">About Member</h1>
+       <div class="container">
+        <div class="card">
+            <img src="martin.jpeg" alt="Martin">
+            <div class="card-content">
+            <h3>Martin</h3>
+            <p>Nama lengkap: Martin Edwards Park (에드워드 마틴 박)
+               Nama panggung: Martin 
+               Tempat, tanggal lahir: Kanada, 20 Maret 2008
+               Posisi: Leader 
+               Asal: Korea Selatan - Inggris</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="james.jpeg" alt="james">
+            <div class="card-content">
+            <h3>James</h3>
+            <p>Nama lengkap: Zhao Yufan (趙雨凡)
+               Nama panggung: James
+               Tempat, tanggal lahir: Hong Kong, 14 Oktober 2005 
+               Posisi: Rapper
+               Asal: Korea Selatan - China</p>
+            </div>   
+        </div>
+        <div class="card">
+            <img src="juhoon.jpeg" alt="juhoon">
+            <div class="card-content">
+            <h3>Juhoon</h3>
+            <p>Nama lengkap: Kim Ju-hoon (김주훈)
+               Nama panggung: Juhoon
+               Tempat, tanggal lahir: Seoul, Korea Selatan, 3 Januari 2008 
+               Posisi: Main dancer
+               Asal: Korea Selatan</p>
+            </div>   
+        </div>
+        <div class="card">
+            <img src="seonghyeon.jpeg" alt="seonghyeon">
+            <div class="card-content">
+            <h3>Seonghyeon</h3>
+            <p>Nama lengkap: Eom Sung-hyun (엄성현)
+              Nama panggung: Seonghyeon 
+              Tempat, tanggal lahir: Daejeon, Korea Selatan, 13 Januari 2009 
+              Posisi: Vokal dan visual
+              Asal: Korea Selatan</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="keonho.jpeg" alt="keonho">
+            <div class="card-content">
+            <h3>Keonho</h3>
+            <p>Nama lengkap: Ahn Geon-ho (안건호)
+               Nama panggung: Keonho 
+               Tempat, tanggal lahir: Suwon, Korea Selatan, 14 Februari 2009 
+               Posisi: Maknae dan juga videografer 
+               Asal: Korea Selatan</p>
+            </div>
+        </div>
+       </div>
+        <video controls autoplay muted loop class="hero-video" src="videocortis.mp4"> type="video/mp4"></video>
+       </div>
+       <div class="footer">&copy; by.gf_seonghyeon</div>
+
+  </body>
+</html>
